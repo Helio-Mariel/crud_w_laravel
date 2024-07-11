@@ -43,9 +43,11 @@ class BookController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        // ->all()->find($id)
+        $book = $this->objBook->find($id);
+        return view('show', compact('book'));
     }
 
     /**
