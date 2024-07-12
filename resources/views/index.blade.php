@@ -1,15 +1,15 @@
 @extends('templates.template')
-
 @section('content')
+
 <h1 class="text-center">CRUD</h1>
 <hr>
 <div>
     <div class="text-center mt-3 mb-4">
-        <a href="">
+        <a href="{{url("books/create")}}">
             <button class="btn btn-success"> Cadastrar</button>
         </a>
     </div>
-    <div class="col-9 m-auto">
+    <div class="col-8 m-auto">
         <table class="table table-hover text-center">
             <caption>Lista dos Livros</caption>
             <thead class="thead-dark">

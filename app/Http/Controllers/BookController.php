@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\BookModel;
 use App\Models\PersonModel;
-use App\Models\User;
 
 class BookController extends Controller
 {
@@ -29,7 +28,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $person = $this->objPerson->all();
+        return view('create', compact('person'));
     }
 
     /**
@@ -37,7 +37,15 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $cad = $this->objBook->create([
+            'title' => $request->title,
+            'pages' => $request->pages,
+            'price' => $request->price,
+            'id_person' => $request->id_person
+        ]);
+        if ($cad) {
+            return redirect('books');
+        }
     }
 
     /**
