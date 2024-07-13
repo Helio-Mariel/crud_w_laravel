@@ -17,8 +17,6 @@ return new class extends Migration
             $table->integer('pages');
             $table->double('price');
             $table->timestamps();
-            $table->integer('id_person')->unsigned();
-            $table->foreign('id_person')->references('id')->on('person')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
