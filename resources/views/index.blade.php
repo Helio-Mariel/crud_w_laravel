@@ -6,7 +6,7 @@
 <div>
     <div class="text-center mt-3 mb-4">
         <a href="{{url("books/create")}}">
-            <button class="btn btn-success"> Cadastrar</button>
+            <button class="btn btn-success">Cadastrar</button>
         </a>
     </div>
     <div class="col-8 m-auto">
@@ -16,7 +16,6 @@
                 <tr>
                     <th scope="col">ID</th>
                     <th scope="col">Título</th>
-                    <th scope="col">Autor</th>
                     <th scope="col">Páginas</th>
                     <th scope="col">Preço</th>
                     <th scope="col">Action</th>
@@ -25,29 +24,24 @@
             </thead>
             <tbody>
                 @foreach ($book as $books)
-                @php
-                $user=$book->find($books->id)->relPersons;
-                @endphp
                 <tr>
                     <th scope="row">{{$books->id}}</th>
                     <td>{{$books->title}}</td>
-                    <td>{{$user->name}}</td>
                     <td>{{$books->pages}}</td>
                     <td>{{$books->price}}Kz</td>
                     <td>
                         <a href="{{url("books/$books->id")}}">
                             <button class="btn btn-dark">Visualizar</button>
                         </a>
-
-                        <a href="">
+                        <a href="{{url("books/$books->id/edit")}}">
                             <button class="btn btn-primary">Editar</button>
                         </a>
-
-                        <a href="">
-                            <button class="btn btn-danger">Eliminar</button>
-                        </a>
+                        <form class="d-inline" method="post" Action="{{ route('books.destroy', [$books->id]) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
                     </td>
-
                 </tr>
                 @endforeach
 

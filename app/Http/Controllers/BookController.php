@@ -19,8 +19,10 @@ class BookController extends Controller
 
     public function index()
     {
-        $book = $this->objBook->all();
-        return view('index', compact('book'));
+        /* $book = $this->objBook->all();
+        return view('index', compact('book'));  */
+        $book = BookModel::all();
+        return view('index', ['book' => $book]);
     }
 
     /**
@@ -28,8 +30,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        $person = $this->objPerson->all();
-        return view('create', compact('person'));
+        //    $person = $this->objPerson->all();
+        return view('create');
     }
 
     /**
@@ -41,11 +43,8 @@ class BookController extends Controller
             'title' => $request->title,
             'pages' => $request->pages,
             'price' => $request->price,
-            'id_person' => $request->id_person
         ]);
-        if ($cad) {
-            return redirect('books');
-        }
+        return redirect('books');
     }
 
     /**
@@ -61,24 +60,32 @@ class BookController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $book = $this->objBook->find($id);
+        return view('edit', compact('book'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $cad = $this->objBook->where(['id' => $id])->update([
+            'title' => $request->title,
+            'pages' => $request->pages,
+            'price' => $request->price,
+        ]);
+        return redirect('books');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $book = $this->objBook->find($id);
+        $book->delete();
+        return redirect('books');
     }
 }

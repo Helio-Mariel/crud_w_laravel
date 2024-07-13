@@ -12,7 +12,6 @@ class BookModel extends Model
         'title',
         'pages',
         'price',
-        'id_person'
     ];
     public function relPersons()
     {

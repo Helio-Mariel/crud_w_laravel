@@ -13,9 +13,7 @@
         Páginas: {{$book->pages}}<br>
         Preço: {{$book->price}}<br>
         <hr>
-        <h5>Sobre o Autor:</h5>
-        Nome: {{$person->name}}<br>
-        E-mail: {{$person->email}}<br>
+
 
     </div>
 </div>
